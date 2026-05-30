@@ -5,7 +5,10 @@
         Title="BIM Explore" Height="800" Width="1400"
         WindowStartupLocation="CenterScreen"
         Background="#1E1E1E"
-        Icon="pack://application:,,,/Resources/app.ico">
+        Icon="pack://application:,,,/Resources/app.ico"
+        ToolTipService.InitialShowDelay="600"
+        ToolTipService.ShowDuration="20000"
+        ToolTipService.BetweenShowDelay="200">
 
     <Window.Resources>
         <converters:FileSizeConverter x:Key="FileSizeConverter"/>
@@ -181,7 +184,8 @@
                         Margin="10,0,0,0" Click="OpenSettings_Click" ToolTip="Configuracion"/>
                 <Button DockPanel.Dock="Right" Content="Indexar Carpeta" Command="{Binding IndexDirectoryCommand}"
                         Style="{StaticResource ActionButtonStyle}"
-                        Padding="18,10" Margin="10,0,0,0" Background="#0E639C"/>
+                        Padding="18,10" Margin="10,0,0,0" Background="#0E639C"
+                        ToolTip="Seleccionar una carpeta y escanearla en busca de archivos BIM. Extrae metadatos y genera miniaturas. La carpeta queda guardada para futuras reindexaciones"/>
                 <Button DockPanel.Dock="Right" Content="Limpiar Versiones" Command="{Binding CleanRevitVersionsCommand}"
                         Style="{StaticResource ActionButtonStyle}"
                         Padding="14,10" Margin="10,0,0,0" Background="#C24B3A"
@@ -194,7 +198,8 @@
                 <Button DockPanel.Dock="Right" Content="Limpiar" Command="{Binding ClearCommand}"
                         Style="{StaticResource ActionButtonStyle}"
                         Padding="14,10" Margin="10,0,0,0" Background="#3E3E42"
-                        Foreground="#CCC" FontWeight="Normal"/>
+                        Foreground="#CCC" FontWeight="Normal"
+                        ToolTip="Vaciar el texto de busqueda y mostrar todos los archivos indexados"/>
                 <CheckBox DockPanel.Dock="Right" Content="FBX"
                           IsChecked="{Binding ShowFbxFiles}" VerticalAlignment="Center"
                           Foreground="#CCC" Margin="10,0,0,0" FontSize="12"
@@ -431,7 +436,8 @@
                                 <Button Content="Abrir archivo" Command="{Binding OpenFileCommand}"
                                         Padding="0,8" Margin="0,0,0,10"
                                         Background="#0E639C" Foreground="White" BorderThickness="0"
-                                        FontSize="12" Cursor="Hand" HorizontalAlignment="Stretch"/>
+                                        FontSize="12" Cursor="Hand" HorizontalAlignment="Stretch"
+                                        ToolTip="Abrir el archivo seleccionado con su aplicacion por defecto (Revit, AutoCAD, etc.)"/>
 
                                 <!-- Tags -->
                                 <TextBlock Text="TAGS" FontWeight="SemiBold" Foreground="#666" FontSize="10"
@@ -457,7 +463,8 @@
                                 <DockPanel Margin="0,0,0,12">
                                     <Button DockPanel.Dock="Right" Content="+" Command="{Binding AddTagCommand}"
                                             Width="30" Background="#3E3E42" Foreground="White"
-                                            BorderThickness="0" FontSize="14" Cursor="Hand" Margin="4,0,0,0"/>
+                                            BorderThickness="0" FontSize="14" Cursor="Hand" Margin="4,0,0,0"
+                                            ToolTip="Anadir el tag escrito al archivo (tambien sirve la tecla Enter)"/>
                                     <Border Background="#3C3C3C" CornerRadius="3" Padding="2,0">
                                         <TextBox Text="{Binding NewTagText, UpdateSourceTrigger=PropertyChanged}"
                                                  FontSize="12" Padding="6,5" Background="Transparent"
@@ -494,7 +501,8 @@
                                 <Button Content="Guardar cambios" Command="{Binding SavePropertiesCommand}"
                                         Padding="0,8" Margin="0,4,0,12"
                                         Background="#2EA043" Foreground="White" BorderThickness="0"
-                                        FontSize="12" Cursor="Hand" HorizontalAlignment="Stretch"/>
+                                        FontSize="12" Cursor="Hand" HorizontalAlignment="Stretch"
+                                        ToolTip="Guardar en la base de datos los cambios de proyecto, disciplina, autor y nombre. Si se renombra el archivo, tambien se renombra en disco"/>
 
                                 <Border Height="1" Background="#3F3F46" Margin="0,0,0,12"/>
 
@@ -539,7 +547,8 @@
                                     <Button DockPanel.Dock="Right" Content="+ Nuevo"
                                             Command="{Binding NewScriptCommand}"
                                             Background="#0E639C" Foreground="White" BorderThickness="0"
-                                            Padding="10,6" FontSize="11" Cursor="Hand"/>
+                                            Padding="10,6" FontSize="11" Cursor="Hand"
+                                            ToolTip="Crear un nuevo script en blanco (sin guardar todavia)"/>
                                     <TextBlock Text="SCRIPTS" Foreground="#888" FontWeight="SemiBold"
                                                FontSize="11" VerticalAlignment="Center"/>
                                 </DockPanel>
@@ -616,11 +625,13 @@
                             <Button DockPanel.Dock="Right" Content="Eliminar"
                                     Command="{Binding DeleteScriptCommand}"
                                     Background="#C24B3A" Foreground="White" BorderThickness="0"
-                                    Padding="12,6" FontSize="11" Cursor="Hand" Margin="6,0,0,0"/>
+                                    Padding="12,6" FontSize="11" Cursor="Hand" Margin="6,0,0,0"
+                                    ToolTip="Eliminar definitivamente el script seleccionado"/>
                             <Button DockPanel.Dock="Right" Content="Guardar"
                                     Command="{Binding SaveScriptCommand}"
                                     Background="#2EA043" Foreground="White" BorderThickness="0"
-                                    Padding="12,6" FontSize="11" Cursor="Hand"/>
+                                    Padding="12,6" FontSize="11" Cursor="Hand"
+                                    ToolTip="Guardar los cambios del script en la base de datos"/>
                             <TextBlock Text="EDITAR SCRIPT" Foreground="#666" FontWeight="SemiBold"
                                        FontSize="11" VerticalAlignment="Center"/>
                         </DockPanel>

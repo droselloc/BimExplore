@@ -39,7 +39,8 @@
                                         Command="{Binding DataContext.RemoveFolderCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                         CommandParameter="{Binding}"
                                         Background="#C24B3A" Foreground="White" BorderThickness="0"
-                                        Padding="10,6" FontSize="11" Cursor="Hand"/>
+                                        Padding="10,6" FontSize="11" Cursor="Hand"
+                                        ToolTip="Quitar esta carpeta del indice. Los archivos de esta carpeta se eliminan del catalogo, pero los archivos del disco no se borran"/>
                                 <StackPanel>
                                     <TextBlock Text="{Binding Path}" Foreground="#DDD" FontSize="12"
                                                TextTrimming="CharacterEllipsis"/>
