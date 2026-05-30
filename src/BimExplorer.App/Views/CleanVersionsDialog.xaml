@@ -1,0 +1,96 @@
+<Window x:Class="BimExplorer.App.Views.CleanVersionsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Limpiar Versiones de Revit" Height="600" Width="750"
+        WindowStartupLocation="CenterOwner"
+        Background="#1E1E1E" ResizeMode="CanResize"
+        ShowInTaskbar="False">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,12">
+            <TextBlock Text="Archivos de version encontrados" FontSize="18" FontWeight="Bold"
+                       Foreground="#DDD" Margin="0,0,0,4"/>
+            <TextBlock x:Name="SummaryText" FontSize="12" Foreground="#999"/>
+        </StackPanel>
+
+        <!-- Select all / none -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,8">
+            <Button Content="Seleccionar todo" Click="SelectAll_Click" Padding="12,5"
+                    Background="#3E3E42" Foreground="#CCC" BorderThickness="0" Cursor="Hand"
+                    Margin="0,0,6,0" FontSize="11"/>
+            <Button Content="Deseleccionar todo" Click="DeselectAll_Click" Padding="12,5"
+                    Background="#3E3E42" Foreground="#CCC" BorderThickness="0" Cursor="Hand"
+                    Margin="0,0,6,0" FontSize="11"/>
+            <TextBlock x:Name="SelectionCountText" Foreground="#888" FontSize="11"
+                       VerticalAlignment="Center" Margin="8,0,0,0"/>
+        </StackPanel>
+
+        <!-- File list with checkboxes -->
+        <Border Grid.Row="2" Background="#252526" CornerRadius="4" BorderBrush="#3F3F46" BorderThickness="1">
+            <ListView x:Name="FileListView" Background="Transparent" BorderThickness="0"
+                      Foreground="#CCC" FontSize="11.5"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="40">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected}" Checked="CheckChanged"
+                                              Unchecked="CheckChanged" VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Archivo" Width="310" DisplayMemberBinding="{Binding FileName}"/>
+                        <GridViewColumn Header="Carpeta" Width="220" DisplayMemberBinding="{Binding Folder}"/>
+                        <GridViewColumn Header="Tamano" Width="80" DisplayMemberBinding="{Binding SizeText}"/>
+                    </GridView>
+                </ListView.View>
+                <ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Background" Value="#2D2D30"/>
+                        <Setter Property="Foreground" Value="#999"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="8,4"/>
+                        <Setter Property="FontSize" Value="11"/>
+                    </Style>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="4,3"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#3E3E42"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Resources>
+            </ListView>
+        </Border>
+
+        <!-- Progress bar (hidden until deletion starts) -->
+        <StackPanel x:Name="ProgressPanel" Grid.Row="3" Margin="0,10,0,0" Visibility="Collapsed">
+            <TextBlock x:Name="ProgressText" Foreground="#CCC" FontSize="11" Margin="0,0,0,4"/>
+            <ProgressBar x:Name="ProgressBar" Height="6" Background="#3C3C3C" Foreground="#0E639C"
+                         BorderThickness="0"/>
+        </StackPanel>
+
+        <!-- Action buttons -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+            <Button x:Name="DeleteButton" Content="Enviar a papelera" Click="Delete_Click"
+                    Padding="20,10" Background="#C24B3A" Foreground="White" BorderThickness="0"
+                    FontSize="13" FontWeight="SemiBold" Cursor="Hand" Margin="0,0,8,0"/>
+            <Button x:Name="CancelButton" Content="Cancelar" Click="Cancel_Click"
+                    Padding="20,10" Background="#3E3E42" Foreground="#CCC" BorderThickness="0"
+                    FontSize="13" Cursor="Hand" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>
