@@ -1,0 +1,20 @@
+# GitHub muestra un boton "Sponsor" en la pagina del repo
+# usando los valores de este archivo. Descomenta lo que uses.
+#
+# Docs: https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
+
+# GitHub Sponsors (requiere darse de alta en https://github.com/sponsors).
+# Sustituye por tu usuario de GitHub:
+# github: droselloc
+
+# Plataformas externas (mete tu usuario/handle correspondiente):
+# ko_fi: tu_usuario
+# buy_me_a_coffee: tu_usuario
+# patreon: tu_usuario
+# liberapay: tu_usuario
+# open_collective: tu_proyecto
+# tidelift: npm/tu-paquete
+# polar: tu_usuario
+
+# Para varios enlaces a la vez (PayPal, web propia, etc.):
+# custom: ['https://paypal.me/tu_usuario', 'https://tu-web.com/donar']
