@@ -25,7 +25,7 @@ dotnet publish $proj `
     /p:PublishSingleFile=true `
     /p:SelfContained=true `
     /p:IncludeNativeLibrariesForSelfExtract=true `
-    /p:EnableCompressionInSingleFile=true
+    /p:IncludeAllContentForSelfExtract=true
 
 if ($LASTEXITCODE -ne 0) {
     throw "dotnet publish fallo con codigo $LASTEXITCODE"

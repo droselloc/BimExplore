@@ -28,6 +28,26 @@ That's it. The executable is fully self-contained, so **you don't need to instal
 
 > **Requirements:** Windows 10 or 11, 64-bit.
 
+### "Windows protected your PC" / antivirus blocks it
+
+The executable is **not yet code-signed** (Authenticode certificates cost real money). That means Windows SmartScreen and some antivirus engines may flag it as coming from an "unknown publisher". It's a false positive — the source code is public on this repo and the binary is reproducibly built by GitHub Actions on every tag.
+
+To get it running:
+
+- **Windows SmartScreen** popup — click **More info** -> **Run anyway**.
+- **ZIP marked as blocked** — right-click the downloaded ZIP -> **Properties** -> tick **Unblock** -> Apply -> then extract.
+- **Antivirus quarantines the .exe** — add `BimExplore.exe` to your antivirus exclusions.
+
+### Verifying the download
+
+Every release ships a `SHA256SUMS.txt` file. To check the ZIP you downloaded matches the official build:
+
+```powershell
+Get-FileHash BimExplore-win-x64.zip -Algorithm SHA256
+```
+
+Compare the resulting hash with the line for `BimExplore-win-x64.zip` in `SHA256SUMS.txt`. If they match, the file is byte-identical to what GitHub Actions built — proof it hasn't been tampered with.
+
 ---
 
 ## First-time setup

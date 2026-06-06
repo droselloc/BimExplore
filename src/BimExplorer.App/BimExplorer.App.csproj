@@ -13,12 +13,15 @@
     <Product>BIM Explore</Product>
   </PropertyGroup>
 
-  <!-- Defaults aplicados al hacer `dotnet publish` -->
+  <!-- Defaults aplicados al hacer `dotnet publish`.
+       NO usamos EnableCompressionInSingleFile porque la compresion
+       (autoextraible nativo) dispara muchisimos falsos positivos en
+       antivirus y SmartScreen. A cambio el .exe pesa mas. -->
   <PropertyGroup>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
 
